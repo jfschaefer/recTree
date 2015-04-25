@@ -4,14 +4,14 @@ package recTree
 object Vec2D {
 	//def Vec2D(x : Double, y : Double) : Vec2D = new Vec2D(x, y)
 	def fromPolar(length : Double, angle : Double) : Vec2D =
-	             new Vec2D(length * math.cos(angle), length * math.sin(angle))
+	             new Vec2D(length * math.cos(angle+math.Pi), length * math.sin(angle+math.Pi))
 }
 
 class Vec2D (val x : Double, val y : Double) {
 	def scale(l : Double) = new Vec2D(x*l, y*l)
 	def add(vec : Vec2D) = new Vec2D(x + vec.x, y + vec.y)
 	def length : Double = math.sqrt(x*x + y*y)
-	def angle : Double = (if (y < 0) -1 else 1)  * math.acos(x/(math.sqrt(x*x+y*y)))  //math.atan(y / x)
+	def angle : Double = (if (y < 0) -1 else 1)  * math.acos(x/(math.sqrt(x*x+y*y))) - math.Pi  //math.atan(y / x)
 }
 
 class BranchState(var _branch : Vec2D, var _co : Vec2D, var _childID : Int) {

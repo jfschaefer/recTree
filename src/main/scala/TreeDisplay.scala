@@ -4,6 +4,7 @@ import scalafx.scene.canvas._
 import scalafx.scene.Node
 import scalafx.scene.paint.Color
 import scalafx.Includes._
+import scala.math
 
 class TreeDisplay {
 	val _canvas : Canvas = new Canvas(400, 400)
@@ -32,7 +33,7 @@ class TreeDisplay {
 				val y1 = - _canvas.height.toDouble * stretch * branchVec.y + y0
 				_gc.strokeLine(x0, y0, x1, y1)
 				recursiveDraw(remainingDepth - 1, branch.state.childID,
-								angle + branch.state.co.angle, stretch * branch.state.co.length,
+								angle + branch.state.co.angle + math.Pi/2, stretch * branch.state.co.length,
 								x1, y1)
 			}
 		}
