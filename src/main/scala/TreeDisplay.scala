@@ -11,10 +11,6 @@ class TreeDisplay {
 	val _gc : GraphicsContext = _canvas.graphicsContext2D
 	var _subtrees : List[SubTree] = Nil
 
-	//create initial screen
-	_gc.fill_=(Color(1.0, 0.0, 0.0, 1.0))
-	_gc.fillOval(0, 0, _canvas.width.toDouble, _canvas.height.toDouble)
-
 	def node : Node = _canvas
 
 	def subtrees_=(trees : List[SubTree]) = {
@@ -24,6 +20,12 @@ class TreeDisplay {
 
 	def recursiveDraw(remainingDepth : Int, subtreeId : Int, angle : Double, stretch : Double,
 						x0 : Double, y0 : Double) : Unit = {
+        if (Global.showColorsInDisplay) {
+            _gc.fill_=(Global.subTreeColors(subtreeId))
+            val dotRadius = math.sqrt(stretch) * Global.displayDotRadius
+            _gc.fillOval(x0-dotRadius, y0-dotRadius, 2*dotRadius, 2*dotRadius)
+        }
+
 		if (remainingDepth > 0) {
 			val tree = _subtrees(subtreeId)
 			for (branch <- tree.branches) {
@@ -31,6 +33,7 @@ class TreeDisplay {
 															branch.state.branch.angle + angle)
 				val x1 = _canvas.width.toDouble * stretch * branchVec.x + x0
 				val y1 = - _canvas.height.toDouble * stretch * branchVec.y + y0
+
 				_gc.strokeLine(x0, y0, x1, y1)
 				recursiveDraw(remainingDepth - 1, branch.state.childID,
 								angle + branch.state.co.angle + math.Pi/2, stretch * branch.state.co.length,

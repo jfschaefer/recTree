@@ -22,7 +22,9 @@ object Global {
 
 	val treeDepth : Int = 11
 
+    val showColorsInDisplay : Boolean = true
+    val displayDotRadius : Double = 30d
+
 	val smallDotSize : Int = 3
 	val bigDotSize : Int = 6
-	
 }
