@@ -20,7 +20,7 @@ object Global {
 
 	val treeDisplayStretch : Double = 0.2  //More precisely, the initial stretch
 
-	val treeDepth : Int = 11
+	val treeDepth : Int = 8
 
     val showColorsInDisplay : Boolean = true
     val displayDotRadius : Double = 30d
