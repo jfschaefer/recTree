@@ -12,7 +12,9 @@ import scalafx.scene.input.{MouseEvent, MouseButton}
 
 class SubTree(val partId : Int, val updateTreeDisplay : () => Unit) {
     val _paneSmall = new Pane()    //display
+    _paneSmall.getStyleClass().add("subtreeSmall")
     val _paneBig = new Pane()      //for actual user interaction
+    _paneBig.getStyleClass().add("subtreeBig")
 
     val _smallSizeInit : Double = 100
     val _bigSizeInit : Double = 400
@@ -25,23 +27,21 @@ class SubTree(val partId : Int, val updateTreeDisplay : () => Unit) {
 
     //Draw root nodes
     val _rootSmall : Circle = new Circle {
-        stroke = Color.Black
-        strokeWidth = 1
         fill = Global.subTreeColors(partId)
         radius = Global.smallDotSize
         centerX = _smallSizeInit * 0.5
         centerY = _smallSizeInit * 0.5
     }
+    _rootSmall.getStyleClass().add("subTreeRootCircleSmall")
     _paneSmall.children += _rootSmall
 
     val _rootBig : Circle = new Circle {
-        stroke = Color.Black
-        strokeWidth = 1
         fill = Global.subTreeColors(partId)
         radius = Global.bigDotSize
         centerX = _bigSizeInit * 0.5
         centerY = _bigSizeInit * 0.5
     }
+    _rootBig.getStyleClass().add("subTreeRootCircleBig")
     _paneBig.children += _rootBig
 
     //define Branch class
@@ -50,24 +50,24 @@ class SubTree(val partId : Int, val updateTreeDisplay : () => Unit) {
         val _thisPtr = this
 
         val _bigLineMain : Line = new Line {}
+        _bigLineMain.getStyleClass().add("subTreeLineBig")
         _paneBig.children += _bigLineMain
 
         val _smallLineMain : Line = new Line {}
+        _smallLineMain.getStyleClass().add("subTreeLineSmall")
         _paneSmall.children += _smallLineMain
 
         //main dot
         val _bigDotMain : Circle = new Circle {
-            stroke = Color.Black
-            strokeWidth = 1
             radius = Global.bigDotSize
         }
+        _bigDotMain.getStyleClass().add("subTreeBranchCircle")
         _paneBig.children += _bigDotMain
 
         val _smallDotMain : Circle = new Circle {
-            stroke = Color.Black
-            strokeWidth = 1
             radius = Global.smallDotSize
         }
+        _smallDotMain.getStyleClass().add("subTreeBranchCircle")
         _paneSmall.children += _smallDotMain
 
         val dotMainDragS = new DragInitState();
@@ -77,6 +77,7 @@ class SubTree(val partId : Int, val updateTreeDisplay : () => Unit) {
         val x = new MenuItem("Delete") {
             onAction = {e : ActionEvent => {_branches = _branches diff (_thisPtr :: Nil); removeAll() } }
         }
+        x.setStyle("-fx-background-color: #ffffff")
         _branchCMItems = x :: _branchCMItems
         for (i <- 0 to Global.numberOfSubtrees - 1) {
             val x = new MenuItem("Change color") {
@@ -131,30 +132,26 @@ class SubTree(val partId : Int, val updateTreeDisplay : () => Unit) {
 
 
         //co line
-        val _bigLineCo : Line = new Line() {
-            strokeDashArray ++= Global.subTreeBigDashed
-            stroke = Global.subTreeDarkish
-        }
+        val _bigLineCo : Line = new Line() {}
+        _bigLineCo.getStyleClass().add("dashedLineBig")
         _paneBig.children += _bigLineCo
 
-        val _smallLineCo : Line = new Line() {
-            strokeDashArray ++= Global.subTreeSmallDashed
-            stroke = Global.subTreeDarkish
-        }
+        val _smallLineCo : Line = new Line() {}
+        _smallLineCo.getStyleClass().add("dashedLineSmall")
         _paneSmall.children += _smallLineCo
 
         //co dot
         val _bigDotCo : Circle = new Circle() {
             strokeWidth = 2
             radius = Global.bigDotSize
-            fill = Global.subTreeDarkish
+            fill = Global.subTreeLightish
         }
         _paneBig.children += _bigDotCo
 
         val _smallDotCo : Circle = new Circle() {
             strokeWidth = 1
             radius = Global.smallDotSize
-            fill = Global.subTreeDarkish
+            fill = Global.subTreeLightish
         }
         _paneSmall.children += _smallDotCo
 
@@ -293,11 +290,16 @@ class SubTree(val partId : Int, val updateTreeDisplay : () => Unit) {
     def nodeBig : Node = _paneBig
 
     def setSelectedAppearance() = {
-        _paneSmall.setStyle("-fx-background-color: #ffffff;")
+        //_paneSmall.setStyle("-fx-background-color: #ffffff;")
+        _paneSmall.getStyleClass().clear()
+        _paneSmall.getStyleClass().add("subtreeSmall-selected")
+        val x = 3  //I don't understand why, but otherwise I get a type mismatch
     }
 
     def setUnselectedAppearance() = {
-        _paneSmall.setStyle("-fx-background-color: #cccccc;")
+        //_paneSmall.setStyle("-fx-background-color: #cccccc;")
+        _paneSmall.getStyleClass().clear()
+        _paneSmall.getStyleClass().add("subtreeSmall-unselected")
     }
 
     def updateAll() {

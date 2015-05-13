@@ -1,0 +1,102 @@
+
+
+.background {
+    -fx-background-color:
+        linear-gradient(to bottom right, #070325 0%, #0d0830 20%, #03020e 100%),
+        radial-gradient(center 20% 20%, radius 100%, rgba(26.0, 12.0, 117.0, 0.5), rgba(3.0, 2.0, 14.0, 0.5));
+    -fx-background-insets: 0, 0;
+}
+
+
+.subtreeSmall-unselected {
+    -fx-background-radius: 5px;
+    -fx-background-color:
+        linear-gradient(to bottom right, #1d1760 0%, #1d1760 45%, #03020e 55%, #03020e 100%),
+        linear-gradient(to bottom, #070325 0%, #0d0830 20%, #03020e 100%);
+    -fx-background-insets: 2, 3;
+}
+
+.subtreeSmall-unselected:hover {
+    -fx-background-radius: 5px;
+    -fx-background-color:
+        /* linear-gradient(to bottom right, #1d1760, #03020e), */
+        linear-gradient(to bottom right, #1d1760 0%, #1d1760 45%, #03020e 55%, #03020e 100%),
+        linear-gradient(to bottom, #070325 0%, #0d0830 20%, #03020e 100%),
+        radial-gradient(center 30% 30%, radius 150%, rgba(26.0, 12.0, 117.0, 0.5), rgba(3.0, 2.0, 14.0, 0.5));
+    -fx-background-insets: 2, 3, 3;
+}
+
+.subtreeSmall-selected {
+    -fx-background-radius: 5px;
+    -fx-background-color:
+        /* linear-gradient(to bottom right, #03020e, #1d1760), */
+        linear-gradient(to bottom right, #03020e 0%, #03020e 45%, #1d1760 55%, #1d1760 100%),
+        /* linear-gradient(to bottom, #0d0830 0%, #03020e 80%, #070325 100%); */
+        linear-gradient(to bottom, #03020e 0%, #070325 80%, #0d0830 100%);
+    -fx-background-insets: 2, 3;
+}
+
+.subtreeBig, .treeDisplay {
+    -fx-border-radius: 5px;
+    -fx-border-color: #03020e;
+    -fx-border-insets: 2;
+    -fx-border-width: 1;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 3;
+    -fx-background-color:
+        radial-gradient(center 30% 30%, radius 100%, rgba(13.0, 6.0, 58.0, 0.8), rgba(3.0, 2.0, 14.0, 0.8));
+}
+
+.context-menu {
+    -fx-border-color: #03020e;
+    -fx-border-width: 1;
+    -fx-background-color: #0d0830;
+    -fx-padding: 0px 2px 0px 2px;
+}
+
+.menu-item {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 4px 2px 4px 2px;
+}
+
+.menu-item .label {
+    -fx-padding: 2px 8px 2px 8px;
+    -fx-pref-width: 120px;
+    -fx-text-alignment: center;
+}
+
+.subTreeRootCircleBig {
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 1;
+}
+
+.subTreeRootCircleSmall {
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 0.5;
+}
+
+.subTreeBranchCircle {
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 0.5;
+}
+
+.subTreeLineBig {
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 2;
+}
+
+.subTreeLineSmall {
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 1;
+}
+
+.dashedLineBig {
+    -fx-stroke-dash-array: 2.0 3.0;
+    -fx-stroke: rgba(255.0, 255.0, 255.0, 0.5);
+}
+
+.dashedLineSmall {
+    -fx-stroke-dash-array: 1.0 2.0;
+    -fx-stroke: rgba(255.0, 255.0, 255.0, 0.5);
+}

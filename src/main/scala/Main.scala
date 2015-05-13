@@ -4,7 +4,6 @@ import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.scene.layout._
 import scalafx.scene.input.{MouseEvent, MouseButton}
-import scalafx.scene.control.TitledPane
 import scalafx.scene.{Scene, Group, Node}
 
 
@@ -44,6 +43,7 @@ object Main extends JFXApp {
 	_subtrees(selectedSubTree).setSelectedAppearance()
 
 	val _gridPane = new GridPane()
+    _gridPane.getStyleClass().add("background")
 
 	stage = new JFXApp.PrimaryStage() {
 		title="recTree"
@@ -55,6 +55,7 @@ object Main extends JFXApp {
 			}
 			_gridPane.add(_treeDisplay.node, Global.numberOfSubtrees, 0, 1, 2)
 		}
+        scene().stylesheets += this.getClass.getResource("/css/dark.css").toExternalForm
 	}
 
 	def onResize() = {
